@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workshop Sign-Up</title>
+<style>
+  :root {
+    --navy: #123a6b;
+    --navy-soft: #1d4e89;
+    --navy-light: #e8eef7;
+    --ink: #1c2530;
+    --grey: #5c6b7a;
+    --line: #dce4ee;
+    --white: #ffffff;
+    --amber: #b06a00;
+    --amber-bg: #fdf3e3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 24px 18px 56px;
+  }
+  header.top {
+    text-align: center;
+    padding: 20px 0 24px;
+  }
+  header.top h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.3px;
+  }
+  header.top p {
+    font-size: 13px;
+    color: var(--grey);
+    margin-top: 4px;
+  }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 16px;
+    margin-bottom: 18px;
+    background: var(--white);
+  }
+  .card h2 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--navy-soft);
+    margin-bottom: 12px;
+  }
+  /* Workshop details */
+  .ws-name { font-size: 19px; font-weight: 700; color: var(--navy); }
+  .ws-meta { margin-top: 10px; display: grid; gap: 6px; }
+  .ws-meta div { font-size: 14px; color: var(--ink); }
+  .ws-meta span { color: var(--grey); }
+  .seat-bar {
+    margin-top: 14px;
+    background: var(--navy-light);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .seat-bar strong { font-size: 15px; }
+  /* Lists */
+  ul.list { list-style: none; }
+  ul.list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 2px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  ul.list li:last-child { border-bottom: none; }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--navy-soft);
+    flex-shrink: 0;
+  }
+  .dot.wait { background: var(--amber); }
+  .seat-no {
+    font-size: 12px;
+    color: var(--grey);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .empty-note { font-size: 13px; color: var(--grey); font-style: italic; padding: 6px 2px; }
+  .subhead {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 16px 0 4px;
+  }
+  /* Status badges */
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .badge.open { background: var(--navy-light); color: var(--navy); }
+  .badge.full { background: var(--amber-bg); color: var(--amber); }
+  /* Forms */
+  .form-row { display: flex; gap: 8px; margin-top: 14px; }
+  .form-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--ink);
+    outline: none;
+  }
+  .form-row input:focus { border-color: var(--navy-soft); }
+  button.btn {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  button.btn:active { background: var(--navy-soft); }
+  .hint { font-size: 12px; color: var(--grey); margin-top: 8px; }
+  /* Reminders */
+  .rem-note {
+    background: var(--navy-light);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--navy);
+  }
+  footer.foot {
+    text-align: center;
+    font-size: 12px;
+    color: var(--grey);
+    padding-top: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="top">
+    <h1>Workshop Sign-Up</h1>
+    <p>Check seats, join the class or waitlist, and keep your notes here.</p>
+  </header>
+
+  <!-- SECTION 1: Workshop details -->
+  <section class="card">
+    <h2>Workshop Details</h2>
+    <div class="ws-name">Intro to Batik Painting</div>
+    <div class="ws-meta">
+      <div><span>Location:</span> Studio Azhari, Bangsar, Kuala Lumpur</div>
+      <div><span>Date:</span> Saturday, 14 June</div>
+      <div><span>Time:</span> 10:00 AM – 12:30 PM</div>
+      <div><span>Seat limit:</span> 6 seats</div>
+    </div>
+    <div class="seat-bar">
+      <span id="seatSummary">Seats: 3 of 6 taken</span>
+      <span id="seatBadge" class="badge open">Seats Available</span>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Sign-up list -->
+  <section class="card">
+    <h2>Sign-Up List</h2>
+    <ul class="list" id="seatList"></ul>
+
+    <div class="subhead">Waitlist</div>
+    <ul class="list" id="waitList"></ul>
+
+    <form class="form-row" id="joinForm">
+      <input type="text" id="nameInput" placeholder="Type your name…" maxlength="40" autocomplete="off">
+      <button type="submit" class="btn" id="joinBtn">Join</button>
+    </form>
+    <div class="hint" id="joinHint">Joining adds you to the seat list, or the waitlist if the class is full.</div>
+  </section>
+
+  <!-- SECTION 3: Reminder list -->
+  <section class="card">
+    <h2>Reminder List</h2>
+    <div id="remNotes"></div>
+    <form class="form-row" id="remForm">
+      <input type="text" id="remInput" placeholder="Short reminder note…" maxlength="80" autocomplete="off">
+      <button type="submit" class="btn">Add</button>
+    </form>
+  </section>
+
+  <footer class="foot">Sample data only — nothing is saved between visits.</footer>
+</div>
+
+<script>
+  // ---------- Sample data (never opens empty) ----------
+  var SEAT_LIMIT = 6;
+  var seats = ["Aisyah Rahman", "Tan Wei Ming", "Priya Letchumanan"];
+  var waitlist = ["Hafiz Ismail"];
+  var reminders = [
+    "Bring an old t-shirt — canting wax can drip.",
+    "Arrive 15 minutes early to find parking in Bangsar."
+  ];
+
+  // ---------- Renderers ----------
+  function renderStatus() {
+    var taken = seats.length;
+    document.getElementById("seatSummary").textContent =
+      "Seats: " + taken + " of " + SEAT_LIMIT + " taken";
+    var badge = document.getElementById("seatBadge");
+    if (taken >= SEAT_LIMIT) {
+      badge.textContent = "Class Full — Waitlist Open";
+      badge.className = "badge full";
+    } else {
+      badge.textContent = "Seats Available";
+      badge.className = "badge open";
+    }
+  }
+
+  function renderSeats() {
+    var ul = document.getElementById("seatList");
+    ul.innerHTML = "";
+    seats.forEach(function (name, i) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="dot"></span>' +
+        escapeHtml(name) + '<span class="seat-no">Seat ' + (i + 1) + " / " + SEAT_LIMIT + "</span>";
+      ul.appendChild(li);
+    });
+  }
+
+  function renderWaitlist() {
+    var ul = document.getElementById("waitList");
+    ul.innerHTML = "";
+    if (waitlist.length === 0) {
+      var li = document.createElement("li");
+      li.className = "empty-note";
+      li.textContent = "No one waiting yet.";
+      ul.appendChild(li);
+      return;
+    }
+    waitlist.forEach(function (name, i) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="dot wait"></span>' +
+        escapeHtml(name) + '<span class="seat-no">Waitlist #' + (i + 1) + "</span>";
+      ul.appendChild(li);
+    });
+  }
+
+  function renderReminders() {
+    var box = document.getElementById("remNotes");
+    box.innerHTML = "";
+    reminders.forEach(function (note) {
+      var div = document.createElement("div");
+      div.className = "rem-note";
+      div.textContent = note;
+      box.appendChild(div);
+    });
+  }
+
+  function escapeHtml(s) {
+    var d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // ---------- Feature 1 & 2: Join class / join waitlist ----------
+  document.getElementById("joinForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var input = document.getElementById("nameInput");
+    var hint = document.getElementById("joinHint");
+    var name = input.value.trim();
+    if (name === "") {
+      hint.textContent = "Please type a name first.";
+      return;
+    }
+    if (seats.length < SEAT_LIMIT) {
+      seats.push(name);                 // Feature 1: join the class
+      hint.textContent = name + " joined the class. See you there!";
+    } else {
+      waitlist.push(name);              // Feature 2: go to the waitlist
+      hint.textContent = "The class is full — " + name + " was added to the waitlist.";
+    }
+    input.value = "";
+    renderStatus();
+    renderSeats();
+    renderWaitlist();
+  });
+
+  // ---------- Feature 3: Add reminder ----------
+  document.getElementById("remForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var input = document.getElementById("remInput");
+    var note = input.value.trim();
+    if (note === "") return;
+    reminders.push(note);               // appears immediately on screen
+    input.value = "";
+    renderReminders();
+  });
+
+  // ---------- Initial paint ----------
+  renderStatus();
+  renderSeats();
+  renderWaitlist();
+  renderReminders();
+</script>
+</body>
+</html>
